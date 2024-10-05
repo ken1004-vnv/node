@@ -1,3 +1,4 @@
+const { log } = require('console');
 const { writeFile } = require('fs');
 const http = require('http');
 const os = require('os');
@@ -31,7 +32,50 @@ writeFile('D:\NodeJs\\index.txt', JSON.stringify(information, null, 2), (err) =>
     console.log(err);
     return;
   }
-  
+
   // logger.log('print computer\'s infos');
   console.log('Completed task!');
+});
+
+
+// function getData(id) {
+
+//   let c ;
+//   setTimeout(() =>  {
+// c= {
+//    id,
+//       name: "ngoc"
+//  }
+//   },0)
+//     return c;
+// }
+
+// let a = getData(10);
+// console.log(a);
+
+
+function getData(callback) {
+  setTimeout(() => {
+      console.log('Introduced');
+      callback('ngoc');
+  }, 1000);
+}
+function processData(data, callback) {
+  setTimeout(() => {
+      console.log('Ten:', data);
+      callback('ST22B');
+  }, 1000);
+}
+function saveData(processedData, callback) {
+  setTimeout(() => {
+      console.log('Lop:', processedData);
+      callback();
+  }, 1000);
+}
+getData(function(data) {
+  processData(data, function(processedData) {
+      saveData(processedData, function(saveData) {
+        console.log('Chay xong');
+      });
+  });
 });
